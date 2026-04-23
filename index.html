@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Battle Card | RD Station vs Kommo</title>
+    <style>
+        :root {
+            --azul-claro: #00c9eb;
+            --ciano-escuro: #002233;
+            --roxo: #a34dff;
+            --rosa: #ff009e;
+            --laranja: #ff8900;
+            --branco: #ffffff;
+            --fundo: #f4f7f9;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, sans-serif;
+            background-color: var(--fundo);
+            color: var(--ciano-escuro);
+            margin: 0;
+            padding: 0;
+            line-height: 1.6;
+        }
+
+        header {
+            background-color: var(--ciano-escuro);
+            color: var(--branco);
+            padding: 2rem 1rem;
+            text-align: center;
+            border-bottom: 5px solid var(--laranja);
+        }
+
+        header h1 { margin: 0; font-size: 2.2rem; }
+        header p { color: var(--azul-claro); font-weight: bold; margin-top: 5px; }
+
+        .container {
+            max-width: 1200px;
+            margin: 30px auto;
+            padding: 0 20px;
+        }
+
+        .grid-2 {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+            margin-bottom: 30px;
+        }
+
+        .card {
+            background: var(--branco);
+            padding: 25px;
+            border-radius: 12px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+            border-top: 4px solid var(--azul-claro);
+        }
+
+        .card.kommo { border-top-color: var(--rosa); }
+        .card.rd { border-top-color: var(--azul-claro); }
+
+        h2 { color: var(--ciano-escuro); display: flex; align-items: center; gap: 10px; border-bottom: 2px solid #eee; padding-bottom: 10px; }
+        
+        .badge {
+            display: inline-block;
+            padding: 4px 10px;
+            border-radius: 12px;
+            font-size: 12px;
+            font-weight: bold;
+            color: white;
+            margin-bottom: 10px;
+        }
+        .bg-roxo { background: var(--roxo); }
+        .bg-laranja { background: var(--laranja); }
+
+        ul { padding-left: 20px; }
+        li { margin-bottom: 10px; }
+
+        /* Tabela de Comparação */
+        .table-wrapper {
+            background: var(--branco);
+            border-radius: 12px;
+            padding: 20px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+            margin-bottom: 30px;
+            overflow-x: auto;
+        }
+
+        table { width: 100%; border-collapse: collapse; margin-top: 15px; }
+        th, td { padding: 15px; text-align: left; border-bottom: 1px solid #ddd; }
+        th { background-color: var(--ciano-escuro); color: var(--branco); }
+        tr:hover { background-color: #f9f9f9; }
+        td:nth-child(2) { border-right: 2px solid #eee; }
+
+        /* Killer Questions */
+        .killer-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 15px;
+        }
+
+        .killer-card {
+            background: var(--ciano-escuro);
+            color: var(--branco);
+            padding: 20px;
+            border-radius: 12px;
+            border-left: 5px solid var(--laranja);
+        }
+
+        .killer-card h4 { color: var(--azul-claro); margin-top: 0; }
+        .killer-card p { font-size: 14px; margin-bottom: 0; }
+        .rd-answer { color: #a5d6a7; font-weight: bold; } /* Verde suave para destacar a resposta RD */
+        
+        .alert {
+            background-color: #ffebee;
+            border-left: 5px solid var(--rosa);
+            padding: 15px;
+            margin: 20px 0;
+            border-radius: 4px;
+            font-size: 14px;
+        }
+    </style>
+</head>
+<body>
+
+<header>
+    <h1>⚔️ Battle Card: RD Station vs Kommo</h1>
+    <p>Guia de Inteligência Competitiva PMMRD</p>
+</header>
+
+<div class="container">
+    
+    <div class="alert">
+        <strong>⚠️ Alerta de Movimento de Mercado:</strong> A Kommo tem aparecido como ofensor de churn e losts (principalmente CRM), representando uma receita estimada perdida de ARR em R$ 804.384,00 em 2024[cite: 8, 11]. Eles atraem leads buscando integrações rápidas com WhatsApp[cite: 19, 23].
+    </div>
+
+    <div class="grid-2">
+        <div class="card kommo">
+            <span class="badge bg-roxo">O Concorrente</span>
+            <h2>O que é a Kommo?</h2>
+            <p>A Kommo é um CRM focado em fornecer soluções baseadas em mensagens, sendo esse seu principal diferencial[cite: 64]. A ideia geral é unificar todo tipo de entrada de contato que um lead pode iniciar[cite: 72].</p>
+            <ul>
+                <li><strong>Perfil do Cliente:</strong> Foco em Pequenas e Médias Empresas[cite: 124]. Concentração de 1 a 4 seats e 75% ICP D (Varejo, Saúde, Serviços)[cite: 46, 54].</li>
+                <li><strong>Posicionamento:</strong> Criaram a subcategoria de "primeiro CRM conversacional", focando em vendas e comunicação por mensagens, não no processo gerencial tradicional[cite: 112, 113, 115].</li>
+            </ul>
+        </div>
+
+        <div class="card rd">
+            <span class="badge bg-laranja">Nossa Força</span>
+            <h2>Por que a RD Vence?</h2>
+            <p>O RD Station vence ao oferecer uma solução completa e integrada que cobre toda a jornada do cliente: atração, nutrição e conversão[cite: 529].</p>
+            <ul>
+                <li><strong>Escala Sustentável:</strong> Auxiliamos empresas a escalar resultados com marketing e vendas alinhados[cite: 530].</li>
+                <li><strong>Produto Completo:</strong> Cada produto RD resolve profundamente dores de Mkt, Vendas e Conversas, enquanto a Kommo entrega uma solução básica de prateleira que exige conhecimento técnico para integrar[cite: 562].</li>
+                <li><strong>Suporte Local:</strong> Nosso suporte é completo e em português, frente a uma ferramenta estrangeira[cite: 531, 550].</li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="grid-2">
+        <div class="card">
+            <h2>🚨 Fraquezas da Kommo (Onde bater)</h2>
+            <ul>
+                <li><strong>Atendimento Terrível:</strong> Clientes relatam extrema lentidão no suporte e problemas sem solução[cite: 471, 473]. Além disso, a ajuda tem limitações multilíngue (foco em russo e inglês)[cite: 441, 475].</li>
+                <li><strong>Instabilidade e Bugs:</strong> Plataforma apresenta falhas, lentidão ocasional e problemas na integração do WhatsApp que deixam clientes incomunicáveis[cite: 435, 496, 501].</li>
+                <li><strong>Complexidade Técnica:</strong> Configurações iniciais são complexas demais e exigem alto nível técnico[cite: 440]. Integração com Landing Pages é ruim[cite: 482].</li>
+                <li><strong>Relatórios Fracos:</strong> Limitações graves na geração de relatórios complexos, sem opção de customização detalhada[cite: 436].</li>
+            </ul>
+        </div>
+
+        <div class="card">
+            <h2>🎯 Nossos Argumentos (Como defender)</h2>
+            <ul>
+                <li><strong>Gestão de Ponta a Ponta:</strong> Nós não apenas fechamos vendas via WhatsApp, nós atraímos o lead e nutrimos o relacionamento com automação robusta de marketing[cite: 520, 531].</li>
+                <li><strong>Estabilidade e Confiança:</strong> Produto brasileiro, suporte nacional acessível e integrações nativas que não deixam a operação cair[cite: 549, 562].</li>
+                <li><strong>Dados para Escalar:</strong> Relatórios completos sobre métricas de marketing, geração de leads e funil de vendas, essenciais para quem quer crescer de verdade[cite: 520].</li>
+                <li><strong>Curva de Aprendizado:</strong> A RD Station é intuitiva e amigável; a Kommo exige gambiarras para cruzar dados de diferentes origens[cite: 531, 562].</li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="table-wrapper">
+        <h2>📊 Comparativo Direto</h2>
+        <table>
+            <tr>
+                <th>Critério</th>
+                <th>Kommo 🐙</th>
+                <th>RD Station 🚀</th>
+            </tr>
+            <tr>
+                <td><strong>Cobertura de Funil</strong></td>
+                <td>Apenas conversão (final de funil)[cite: 531].</td>
+                <td>Atração, nutrição e conversão de leads[cite: 531].</td>
+            </tr>
+            <tr>
+                <td><strong>Automação</strong></td>
+                <td>Foco exclusivo em tarefas de vendas[cite: 531].</td>
+                <td>Robusta tanto para Marketing quanto para Vendas[cite: 531].</td>
+            </tr>
+            <tr>
+                <td><strong>Relatórios</strong></td>
+                <td>Básicos e limitados ao funil de vendas[cite: 531].</td>
+                <td>Detalhados e completos (dashboards de MKT e Vendas)[cite: 531].</td>
+            </tr>
+            <tr>
+                <td><strong>Comunicação</strong></td>
+                <td>Omnichannel focado apenas em vendas rápidas[cite: 531, 562].</td>
+                <td>Canais centralizados nas plataformas (MKT, Vendas, CRM)[cite: 531].</td>
+            </tr>
+            <tr>
+                <td><strong>Facilidade de Uso</strong></td>
+                <td>Requer maior curva de aprendizado e técnica para integrar[cite: 531, 562].</td>
+                <td>Intuitivo, amigável e pronto para uso sustentável[cite: 531, 562].</td>
+            </tr>
+        </table>
+    </div>
+
+    <h2>⚔️ Killer Questions (Derrubando o concorrente na Call)</h2>
+    <div class="killer-grid">
+        <div class="killer-card">
+            <h4>1. Como a Kommo ajuda na atração de leads?</h4>
+            <p><strong>A Realidade:</strong> A Kommo não cobre essas etapas, focando apenas em vendas[cite: 542].</p>
+            <p class="rd-answer">✅ RD Station: Oferece ferramentas para atrair, nutrir e converter leads (Landing pages, formulários, anúncios)[cite: 541].</p>
+        </div>
+        <div class="killer-card">
+            <h4>2. Quais relatórios eles oferecem para Marketing?</h4>
+            <p><strong>A Realidade:</strong> A Kommo tem relatórios limitados, básicos e prontos, sem foco estratégico em marketing[cite: 547].</p>
+            <p class="rd-answer">✅ RD Station: Fornece relatórios detalhados de ROI, taxas de conversão e dashboards personalizados[cite: 546].</p>
+        </div>
+        <div class="killer-card">
+            <h4>3. Eles têm suporte local adaptado ao Brasil?</h4>
+            <p><strong>A Realidade:</strong> A Kommo é uma solução estrangeira (Russa), menos adaptada ao Brasil e com suporte falho[cite: 68, 550].</p>
+            <p class="rd-answer">✅ RD Station: Suporte completo em português, com entendimento profundo do mercado local[cite: 549].</p>
+        </div>
+        <div class="killer-card">
+            <h4>4. A Kommo alinha MKT e Vendas na mesma plataforma?</h4>
+            <p><strong>A Realidade:</strong> Não, a Kommo foca apenas em CRM e comunicação de vendas[cite: 553].</p>
+            <p class="rd-answer">✅ RD Station: Integra nativamente Módulo de Marketing, CRM e Conversas[cite: 520, 552].</p>
+        </div>
+    </div>
+    <br>
+</div>
+
+</body>
+</html>
