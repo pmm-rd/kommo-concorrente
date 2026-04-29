@@ -7,23 +7,17 @@
 <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
 <style>
   :root {
-    --rd-blue: #00c9eb;
-    --rd-blue-light: #5dd9f0;
-    --rd-accent: #00c9eb;
+    --rd-cyan:   #00c9eb;
+    --rd-dark:   #002233;
     --rd-purple: #a34dff;
-    --rd-pink: #ff009e;
+    --rd-pink:   #ff009e;
     --rd-orange: #ff8900;
-    --kommo-orange: #ff8900;
-    --kommo-orange-light: #ffc26b;
-    --bg: #002233;
-    --bg-card: #002f45;
-    --bg-card2: #003a55;
-    --border: rgba(0,201,235,0.12);
-    --text: #ffffff;
-    --text-muted: #7db8cc;
-    --win: #00c9eb;
-    --lose: #ff8900;
-    --neutral: #a34dff;
+    --bg:        #ffffff;
+    --bg-card:   #f4f9fb;
+    --bg-card2:  #e8f4f8;
+    --border:    #cce8f2;
+    --text:      #002233;
+    --text-muted:#3d7a90;
   }
 
   * { margin: 0; padding: 0; box-sizing: border-box; }
@@ -36,27 +30,13 @@
     overflow-x: hidden;
   }
 
-  /* BACKGROUND GRID */
+  /* subtle dot pattern */
   body::before {
     content: '';
     position: fixed;
     inset: 0;
-    background-image:
-      linear-gradient(rgba(0,61,255,0.04) 1px, transparent 1px),
-      linear-gradient(90deg, rgba(0,61,255,0.04) 1px, transparent 1px);
-    background-size: 40px 40px;
-    pointer-events: none;
-    z-index: 0;
-  }
-
-  body::after {
-    content: '';
-    position: fixed;
-    top: -20%;
-    left: -10%;
-    width: 60%;
-    height: 60%;
-    background: radial-gradient(ellipse, rgba(0,61,255,0.12) 0%, transparent 70%);
+    background-image: radial-gradient(circle, #00c9eb1a 1px, transparent 1px);
+    background-size: 36px 36px;
     pointer-events: none;
     z-index: 0;
   }
@@ -69,35 +49,27 @@
     z-index: 1;
   }
 
-  /* HEADER */
+  /* ── HEADER ── */
   header {
     padding: 40px 0 32px;
-    border-bottom: 1px solid var(--border);
+    border-bottom: 2px solid var(--border);
     margin-bottom: 40px;
-  }
-
-  .header-inner {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    flex-wrap: wrap;
-    gap: 16px;
   }
 
   .badge {
     display: inline-flex;
     align-items: center;
     gap: 6px;
-    background: rgba(0,229,160,0.12);
-    border: 1px solid rgba(0,229,160,0.3);
-    color: var(--rd-accent);
+    background: #e6fafd;
+    border: 1px solid #90dff0;
+    color: #006d80;
     font-size: 11px;
-    font-weight: 600;
+    font-weight: 700;
     letter-spacing: 0.12em;
     text-transform: uppercase;
-    padding: 5px 12px;
+    padding: 5px 14px;
     border-radius: 20px;
-    margin-bottom: 12px;
+    margin-bottom: 14px;
   }
 
   h1 {
@@ -106,48 +78,99 @@
     font-weight: 800;
     line-height: 1.1;
     letter-spacing: -0.02em;
+    color: var(--rd-dark);
   }
 
-  h1 .rd { color: var(--rd-accent); }
-  h1 .vs { color: var(--text-muted); font-weight: 400; font-size: 0.75em; }
-  h1 .kommo { color: var(--kommo-orange); }
+  h1 .rd    { color: #007a92; }
+  h1 .vs    { color: #9bbfcc; font-weight: 400; font-size: 0.72em; }
+  h1 .kommo { color: var(--rd-orange); }
 
   .header-sub {
     font-size: 15px;
     color: var(--text-muted);
     margin-top: 10px;
-    max-width: 520px;
-    line-height: 1.6;
+    max-width: 540px;
+    line-height: 1.65;
   }
 
+  /* ── CENTRAL MESSAGE ── */
   .central-message {
-    background: linear-gradient(135deg, rgba(0,61,255,0.15), rgba(0,229,160,0.08));
-    border: 1px solid rgba(0,229,160,0.2);
+    background: linear-gradient(135deg, #e6fafd, #f3eeff);
+    border: 1.5px solid #90dff0;
     border-radius: 16px;
-    padding: 20px 24px;
+    padding: 20px 56px 20px 24px;
     font-size: 14px;
-    line-height: 1.7;
-    color: #C8D4FF;
+    line-height: 1.75;
+    color: #003d52;
     margin-bottom: 36px;
     position: relative;
-    overflow: hidden;
   }
-  .central-message::before {
+  .central-message::after {
     content: '💡';
-    font-size: 28px;
+    font-size: 26px;
     position: absolute;
     right: 20px;
-    top: 16px;
-    opacity: 0.4;
+    top: 18px;
+    opacity: 0.45;
   }
-  .central-message strong {
-    color: var(--rd-accent);
+  .central-message strong { color: #007a92; }
+
+  /* ── SCORE BOARD ── */
+  .score-board {
+    display: grid;
+    grid-template-columns: 1fr auto 1fr;
+    gap: 16px;
+    align-items: center;
+    margin-bottom: 40px;
+    background: var(--rd-dark);
+    border-radius: 20px;
+    padding: 28px;
+    text-align: center;
+    box-shadow: 0 8px 32px rgba(0,34,51,0.14);
   }
 
-  /* FILTER BAR */
+  .score-name {
+    font-family: 'Syne', sans-serif;
+    font-size: 17px;
+    font-weight: 800;
+    margin-bottom: 6px;
+  }
+  .score-name.rd    { color: var(--rd-cyan); }
+  .score-name.kommo { color: var(--rd-orange); }
+
+  .score-number {
+    font-family: 'Syne', sans-serif;
+    font-size: 52px;
+    font-weight: 800;
+    line-height: 1;
+  }
+  .score-number.rd    { color: var(--rd-cyan);   text-shadow: 0 0 40px rgba(0,201,235,0.5); }
+  .score-number.kommo { color: var(--rd-orange);  text-shadow: 0 0 40px rgba(255,137,0,0.45); }
+
+  .score-label {
+    font-size: 12px;
+    color: #4a8fa3;
+    margin-top: 4px;
+  }
+
+  .vs-badge {
+    font-family: 'Syne', sans-serif;
+    font-size: 20px;
+    font-weight: 800;
+    color: #4a8fa3;
+    background: #003a55;
+    border: 1px solid #005572;
+    border-radius: 50%;
+    width: 52px; height: 52px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  /* ── FILTER BAR ── */
   .filter-bar {
     display: flex;
-    gap: 10px;
+    gap: 8px;
     flex-wrap: wrap;
     margin-bottom: 36px;
     align-items: center;
@@ -155,7 +178,7 @@
 
   .filter-label {
     font-size: 12px;
-    font-weight: 600;
+    font-weight: 700;
     letter-spacing: 0.08em;
     text-transform: uppercase;
     color: var(--text-muted);
@@ -168,106 +191,94 @@
     gap: 6px;
     padding: 8px 18px;
     border-radius: 40px;
-    border: 1px solid var(--border);
-    background: var(--bg-card);
+    border: 1.5px solid var(--border);
+    background: #fff;
     color: var(--text-muted);
     font-family: 'DM Sans', sans-serif;
     font-size: 13px;
     font-weight: 500;
     cursor: pointer;
-    transition: all 0.2s;
+    transition: all 0.18s;
+    box-shadow: 0 1px 4px rgba(0,34,51,0.06);
   }
-
   .filter-btn:hover {
-    border-color: rgba(0,61,255,0.4);
-    color: var(--text);
-    background: rgba(0,61,255,0.08);
+    border-color: var(--rd-cyan);
+    color: #007a92;
+    background: #e6fafd;
   }
-
   .filter-btn.active {
-    background: var(--rd-blue);
-    border-color: var(--rd-blue);
+    background: var(--rd-dark);
+    border-color: var(--rd-dark);
+    color: var(--rd-cyan);
+    font-weight: 700;
+    box-shadow: 0 4px 14px rgba(0,34,51,0.2);
+  }
+  .filter-btn.active.kommo-filter {
+    background: var(--rd-orange);
+    border-color: var(--rd-orange);
     color: #fff;
   }
 
-  .filter-btn.active.kommo-filter {
-    background: var(--kommo-orange);
-    border-color: var(--kommo-orange);
-  }
-
-  /* SEARCH */
+  /* ── SEARCH ── */
   .search-wrap {
     position: relative;
     flex: 1;
     min-width: 200px;
-    max-width: 320px;
+    max-width: 300px;
   }
-
   .search-wrap span {
     position: absolute;
-    left: 12px;
-    top: 50%;
+    left: 12px; top: 50%;
     transform: translateY(-50%);
-    font-size: 16px;
+    font-size: 15px;
     pointer-events: none;
   }
-
   #search {
     width: 100%;
     padding: 9px 14px 9px 36px;
     border-radius: 40px;
-    border: 1px solid var(--border);
-    background: var(--bg-card);
+    border: 1.5px solid var(--border);
+    background: #fff;
     color: var(--text);
     font-family: 'DM Sans', sans-serif;
     font-size: 13px;
     outline: none;
-    transition: border 0.2s;
+    transition: border 0.18s;
+    box-shadow: 0 1px 4px rgba(0,34,51,0.06);
   }
+  #search:focus { border-color: var(--rd-cyan); }
+  #search::placeholder { color: #9bbfcc; }
 
-  #search:focus {
-    border-color: var(--rd-blue-light);
-  }
-
-  #search::placeholder {
-    color: var(--text-muted);
-  }
-
-  /* SECTIONS */
-  .section {
-    margin-bottom: 48px;
-  }
+  /* ── SECTIONS ── */
+  .section { margin-bottom: 52px; }
 
   .section-header {
     display: flex;
     align-items: center;
     gap: 10px;
     margin-bottom: 20px;
+    padding-bottom: 12px;
+    border-bottom: 2px solid var(--border);
   }
-
+  .section-emoji { font-size: 22px; }
   .section-title {
     font-family: 'Syne', sans-serif;
     font-size: 18px;
-    font-weight: 700;
-    letter-spacing: -0.01em;
+    font-weight: 800;
+    color: var(--rd-dark);
   }
-
-  .section-emoji {
-    font-size: 22px;
-  }
-
   .section-count {
     font-size: 12px;
     font-weight: 600;
     color: var(--text-muted);
     background: var(--bg-card2);
     border: 1px solid var(--border);
-    padding: 2px 10px;
+    padding: 3px 12px;
     border-radius: 20px;
     margin-left: auto;
   }
 
-  /* CARDS GRID */
+  /* ── CARDS ── */
   .cards-grid {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
@@ -275,31 +286,29 @@
   }
 
   .card {
-    background: var(--bg-card);
-    border: 1px solid var(--border);
+    background: #fff;
+    border: 1.5px solid var(--border);
     border-radius: 16px;
     padding: 22px;
-    transition: transform 0.2s, border-color 0.2s, box-shadow 0.2s;
+    transition: transform 0.18s, box-shadow 0.18s, border-color 0.18s;
     position: relative;
     overflow: hidden;
+    box-shadow: 0 2px 8px rgba(0,34,51,0.06);
   }
-
   .card::before {
     content: '';
     position: absolute;
     top: 0; left: 0; right: 0;
-    height: 3px;
+    height: 4px;
     border-radius: 16px 16px 0 0;
   }
-
-  .card.win::before { background: linear-gradient(90deg, var(--rd-blue), var(--rd-accent)); }
-  .card.lose::before { background: linear-gradient(90deg, var(--kommo-orange), #FFD166); }
-  .card.neutral::before { background: linear-gradient(90deg, #8A94B5, #C8D4FF); }
+  .card.win::before  { background: linear-gradient(90deg, #00c9eb, #a34dff); }
+  .card.lose::before { background: linear-gradient(90deg, #ff8900, #ff009e); }
 
   .card:hover {
     transform: translateY(-3px);
-    border-color: rgba(0,61,255,0.3);
-    box-shadow: 0 12px 40px rgba(0,61,255,0.15);
+    box-shadow: 0 10px 32px rgba(0,201,235,0.15);
+    border-color: var(--rd-cyan);
   }
 
   .card-tag {
@@ -314,43 +323,38 @@
     border-radius: 20px;
     margin-bottom: 12px;
   }
-
-  .card-tag.win { background: rgba(0,229,160,0.12); color: var(--win); border: 1px solid rgba(0,229,160,0.25); }
-  .card-tag.lose { background: rgba(255,107,53,0.12); color: var(--lose); border: 1px solid rgba(255,107,53,0.25); }
-  .card-tag.neutral { background: rgba(255,209,102,0.12); color: var(--neutral); border: 1px solid rgba(255,209,102,0.25); }
+  .card-tag.win  { background: #e6fafd; color: #007a92; border: 1px solid #90dff0; }
+  .card-tag.lose { background: #fff3e6; color: #b05000; border: 1px solid #ffc480; }
 
   .card-title {
     font-family: 'Syne', sans-serif;
     font-size: 15px;
-    font-weight: 700;
+    font-weight: 800;
     margin-bottom: 10px;
     line-height: 1.3;
+    color: var(--rd-dark);
   }
-
   .card-body {
     font-size: 13.5px;
-    color: #A8B4D4;
-    line-height: 1.65;
+    color: #345a6a;
+    line-height: 1.7;
   }
+  .card-body strong { color: var(--rd-dark); font-weight: 700; }
 
-  .card-body strong, .card-body b {
-    color: var(--text);
-    font-weight: 600;
-  }
-
-  /* OBJECTION CARDS */
+  /* ── OBJECTION CARDS ── */
   .objection-card {
-    background: var(--bg-card);
-    border: 1px solid var(--border);
+    background: #fff;
+    border: 1.5px solid var(--border);
     border-radius: 16px;
     overflow: hidden;
-    transition: transform 0.2s, box-shadow 0.2s;
-    margin-bottom: 14px;
+    transition: transform 0.18s, box-shadow 0.18s, border-color 0.18s;
+    margin-bottom: 12px;
+    box-shadow: 0 2px 8px rgba(0,34,51,0.05);
   }
-
   .objection-card:hover {
     transform: translateY(-2px);
-    box-shadow: 0 10px 32px rgba(0,61,255,0.12);
+    box-shadow: 0 8px 28px rgba(0,201,235,0.12);
+    border-color: var(--rd-cyan);
   }
 
   .objection-header {
@@ -360,19 +364,12 @@
     padding: 18px 20px;
     cursor: pointer;
     user-select: none;
-    background: var(--bg-card);
-    transition: background 0.2s;
+    background: #fff;
+    transition: background 0.18s;
   }
+  .objection-header:hover { background: #f4fbfd; }
 
-  .objection-header:hover {
-    background: var(--bg-card2);
-  }
-
-  .objection-icon {
-    font-size: 20px;
-    flex-shrink: 0;
-    margin-top: 2px;
-  }
+  .objection-icon { font-size: 20px; flex-shrink: 0; margin-top: 2px; }
 
   .objection-question {
     font-family: 'Syne', sans-serif;
@@ -380,35 +377,29 @@
     font-weight: 700;
     flex: 1;
     line-height: 1.4;
-    color: var(--kommo-orange);
+    color: #b05000;
   }
 
   .objection-toggle {
     font-size: 18px;
-    color: var(--text-muted);
+    color: #9bbfcc;
     flex-shrink: 0;
     transition: transform 0.3s;
     margin-top: 2px;
   }
-
-  .objection-card.open .objection-toggle {
-    transform: rotate(180deg);
-  }
+  .objection-card.open .objection-toggle { transform: rotate(180deg); }
 
   .objection-answer {
     max-height: 0;
     overflow: hidden;
-    transition: max-height 0.4s cubic-bezier(0.4,0,0.2,1);
+    transition: max-height 0.42s cubic-bezier(0.4,0,0.2,1);
   }
-
-  .objection-card.open .objection-answer {
-    max-height: 400px;
-  }
+  .objection-card.open .objection-answer { max-height: 700px; }
 
   .objection-answer-inner {
-    padding: 0 20px 20px 52px;
-    border-top: 1px solid var(--border);
-    padding-top: 16px;
+    padding: 16px 24px 20px 52px;
+    border-top: 1.5px solid var(--border);
+    background: #f4fbfd;
   }
 
   .answer-label {
@@ -416,27 +407,23 @@
     font-weight: 700;
     letter-spacing: 0.1em;
     text-transform: uppercase;
-    color: var(--rd-accent);
+    color: #007a92;
     margin-bottom: 8px;
   }
 
   .answer-text {
     font-size: 14px;
-    color: #A8B4D4;
-    line-height: 1.7;
+    color: #1e4d5e;
+    line-height: 1.78;
   }
+  .answer-text strong { color: var(--rd-dark); font-weight: 700; }
 
-  .answer-text strong {
-    color: var(--text);
-  }
-
-  /* COMPARISON TABLE */
+  /* ── COMPARE TABLE ── */
   .compare-table {
     width: 100%;
     border-collapse: separate;
     border-spacing: 0 8px;
   }
-
   .compare-table th {
     font-family: 'Syne', sans-serif;
     font-size: 13px;
@@ -445,242 +432,161 @@
     padding: 12px 18px;
     text-align: left;
   }
-
-  .compare-table th:first-child {
-    color: var(--text-muted);
-    width: 22%;
-  }
-
-  .compare-table th.rd-head {
-    color: var(--rd-accent);
-    background: rgba(0,229,160,0.07);
-    border-radius: 10px 0 0 10px;
-  }
-
+  .compare-table th:first-child { color: var(--text-muted); width: 22%; }
   .compare-table th.kommo-head {
-    color: var(--kommo-orange);
-    background: rgba(255,107,53,0.07);
-    border-radius: 0 10px 10px 0;
+    color: #b05000;
+    background: #fff3e6;
+    border-radius: 10px 0 0 10px;
+    border: 1.5px solid #ffc480;
   }
-
+  .compare-table th.rd-head {
+    color: #007a92;
+    background: #e6fafd;
+    border-radius: 0 10px 10px 0;
+    border: 1.5px solid #90dff0;
+  }
   .compare-table td {
     padding: 14px 18px;
     font-size: 13px;
-    color: #A8B4D4;
+    color: #345a6a;
     vertical-align: top;
     line-height: 1.6;
-    background: var(--bg-card);
+    background: #fff;
+    border-top: 1.5px solid var(--border);
+    border-bottom: 1.5px solid var(--border);
   }
-
   .compare-table td:first-child {
     font-family: 'Syne', sans-serif;
     font-size: 13px;
     font-weight: 700;
-    color: var(--text);
+    color: var(--rd-dark);
     border-radius: 10px 0 0 10px;
+    border-left: 1.5px solid var(--border);
   }
-
   .compare-table tr td:last-child {
     border-radius: 0 10px 10px 0;
+    border-right: 1.5px solid var(--border);
   }
-
-  .compare-table td .win-dot::before { content: '✅ '; }
+  .compare-table tbody tr:hover td { background: #f4fbfd; }
+  .compare-table td .win-dot::before  { content: '✅ '; }
   .compare-table td .lose-dot::before { content: '❌ '; }
 
-  /* KILLER QUESTIONS */
+  /* ── KILLER CARDS ── */
   .killer-card {
-    background: var(--bg-card);
-    border: 1px solid var(--border);
+    background: #fff;
+    border: 1.5px solid var(--border);
     border-radius: 16px;
-    padding: 22px;
-    margin-bottom: 14px;
+    padding: 22px 22px 22px 26px;
+    margin-bottom: 12px;
     display: flex;
     gap: 18px;
-    transition: transform 0.2s, box-shadow 0.2s;
+    transition: transform 0.18s, box-shadow 0.18s, border-color 0.18s;
     position: relative;
     overflow: hidden;
+    box-shadow: 0 2px 8px rgba(0,34,51,0.05);
   }
-
   .killer-card::before {
     content: '';
     position: absolute;
     left: 0; top: 0; bottom: 0;
-    width: 3px;
-    background: linear-gradient(180deg, var(--rd-blue), var(--rd-accent));
+    width: 4px;
+    background: linear-gradient(180deg, #00c9eb, #a34dff);
     border-radius: 16px 0 0 16px;
   }
-
   .killer-card:hover {
     transform: translateY(-2px);
-    box-shadow: 0 10px 30px rgba(0,61,255,0.15);
+    box-shadow: 0 10px 28px rgba(0,201,235,0.14);
+    border-color: var(--rd-cyan);
   }
 
   .killer-num {
     font-family: 'Syne', sans-serif;
     font-size: 28px;
     font-weight: 800;
-    color: rgba(0,61,255,0.3);
+    color: #b8dfe8;
     flex-shrink: 0;
     line-height: 1;
     width: 36px;
     text-align: right;
   }
 
-  .killer-content {}
-
   .killer-q {
     font-family: 'Syne', sans-serif;
     font-size: 14px;
-    font-weight: 700;
-    margin-bottom: 10px;
-    color: var(--text);
+    font-weight: 800;
+    margin-bottom: 12px;
+    color: var(--rd-dark);
     line-height: 1.4;
   }
 
   .reality-block {
-    background: rgba(255,107,53,0.08);
-    border: 1px solid rgba(255,107,53,0.18);
+    background: #fff8f0;
+    border: 1.5px solid #ffd0a0;
     border-radius: 10px;
     padding: 10px 14px;
     font-size: 13px;
-    color: #C8A4A4;
+    color: #6b3200;
     margin-bottom: 8px;
     line-height: 1.6;
   }
-
   .reality-block::before {
     content: '⚠️ Kommo: ';
-    font-weight: 600;
-    color: var(--kommo-orange);
+    font-weight: 700;
+    color: #b05000;
   }
 
   .rd-block {
-    background: rgba(0,229,160,0.07);
-    border: 1px solid rgba(0,229,160,0.18);
+    background: #e6fafd;
+    border: 1.5px solid #90dff0;
     border-radius: 10px;
     padding: 10px 14px;
     font-size: 13px;
-    color: #A4C8B8;
+    color: #003d52;
     line-height: 1.6;
   }
-
   .rd-block::before {
     content: '✅ RD Station: ';
-    font-weight: 600;
-    color: var(--rd-accent);
+    font-weight: 700;
+    color: #007a92;
   }
 
-  /* SCORE BOARD */
-  .score-board {
-    display: grid;
-    grid-template-columns: 1fr auto 1fr;
-    gap: 16px;
-    align-items: center;
-    margin-bottom: 40px;
-    background: var(--bg-card);
-    border: 1px solid var(--border);
-    border-radius: 20px;
-    padding: 28px;
-    text-align: center;
-  }
-
-  .score-side {}
-
-  .score-name {
-    font-family: 'Syne', sans-serif;
-    font-size: 18px;
-    font-weight: 800;
-    margin-bottom: 6px;
-  }
-
-  .score-name.rd { color: var(--rd-accent); }
-  .score-name.kommo { color: var(--kommo-orange); }
-
-  .score-number {
-    font-family: 'Syne', sans-serif;
-    font-size: 52px;
-    font-weight: 800;
-    line-height: 1;
-  }
-
-  .score-number.rd { color: var(--rd-accent); text-shadow: 0 0 40px rgba(0,229,160,0.4); }
-  .score-number.kommo { color: var(--kommo-orange); text-shadow: 0 0 40px rgba(255,107,53,0.3); }
-
-  .score-label {
-    font-size: 12px;
-    color: var(--text-muted);
-    margin-top: 4px;
-  }
-
-  .vs-badge {
-    font-family: 'Syne', sans-serif;
-    font-size: 22px;
-    font-weight: 800;
-    color: var(--text-muted);
-    background: var(--bg-card2);
-    border: 1px solid var(--border);
-    border-radius: 50%;
-    width: 52px;
-    height: 52px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-  }
-
-  /* EMPTY STATE */
-  .empty-state {
-    text-align: center;
-    padding: 60px 20px;
-    color: var(--text-muted);
-    font-size: 15px;
-  }
-
-  .empty-state span {
-    display: block;
-    font-size: 40px;
-    margin-bottom: 12px;
-  }
-
-  /* HIDDEN */
-  .hidden { display: none !important; }
-
-  /* FOOTER */
+  /* ── FOOTER ── */
   footer {
-    border-top: 1px solid var(--border);
+    border-top: 2px solid var(--border);
     padding: 28px 0;
     margin-top: 60px;
     text-align: center;
     font-size: 12px;
-    color: var(--text-muted);
+    color: #9bbfcc;
   }
+  footer strong { color: #007a92; }
 
-  footer strong { color: var(--rd-accent); }
+  /* ── UTILITIES ── */
+  .hidden { display: none !important; }
 
-  /* RESPONSIVE */
+  /* ── RESPONSIVE ── */
   @media (max-width: 640px) {
     .cards-grid { grid-template-columns: 1fr; }
     .score-board { grid-template-columns: 1fr; }
     .vs-badge { margin: 0 auto; }
     .compare-table { font-size: 12px; }
     .compare-table th, .compare-table td { padding: 10px 12px; }
+    .objection-answer-inner { padding-left: 20px; }
   }
 
-  /* ANIMATIONS */
+  /* ── ANIMATIONS ── */
   @keyframes fadeInUp {
-    from { opacity: 0; transform: translateY(16px); }
-    to { opacity: 1; transform: translateY(0); }
+    from { opacity: 0; transform: translateY(14px); }
+    to   { opacity: 1; transform: translateY(0); }
   }
-
-  .animate-in {
-    animation: fadeInUp 0.5s ease both;
-  }
-
+  .animate-in { animation: fadeInUp 0.45s ease both; }
   .animate-in:nth-child(1) { animation-delay: 0.05s; }
-  .animate-in:nth-child(2) { animation-delay: 0.1s; }
+  .animate-in:nth-child(2) { animation-delay: 0.10s; }
   .animate-in:nth-child(3) { animation-delay: 0.15s; }
-  .animate-in:nth-child(4) { animation-delay: 0.2s; }
+  .animate-in:nth-child(4) { animation-delay: 0.20s; }
   .animate-in:nth-child(5) { animation-delay: 0.25s; }
-  .animate-in:nth-child(6) { animation-delay: 0.3s; }
+  .animate-in:nth-child(6) { animation-delay: 0.30s; }
+  .animate-in:nth-child(7) { animation-delay: 0.35s; }
 </style>
 </head>
 <body>
@@ -689,12 +595,10 @@
 
   <!-- HEADER -->
   <header>
-    <div class="header-inner">
-      <div>
-        <div class="badge">⚔️ Battle Card • 2026</div>
-        <h1><span class="rd">RD Station</span> <span class="vs">vs</span> <span class="kommo">Kommo</span></h1>
-        <p class="header-sub">Guia estratégico para vendedores — saiba exatamente como posicionar, argumentar e fechar contra a Kommo.</p>
-      </div>
+    <div>
+      <div class="badge">⚔️ Battle Card</div>
+      <h1><span class="rd">RD Station</span> <span class="vs">vs</span> <span class="kommo">Kommo</span></h1>
+      <p class="header-sub">Guia estratégico para vendedores — saiba exatamente como posicionar, argumentar e fechar contra a Kommo.</p>
     </div>
   </header>
 
@@ -705,13 +609,13 @@
 
   <!-- SCORE -->
   <div class="score-board">
-    <div class="score-side">
+    <div>
       <div class="score-name rd">🚀 RD Station</div>
       <div class="score-number rd">7</div>
       <div class="score-label">Vantagens estratégicas</div>
     </div>
     <div class="vs-badge">VS</div>
-    <div class="score-side">
+    <div>
       <div class="score-name kommo">🐙 Kommo</div>
       <div class="score-number kommo">3</div>
       <div class="score-label">Pontos de atenção</div>
@@ -720,7 +624,7 @@
 
   <!-- FILTROS -->
   <div class="filter-bar">
-    <span class="filter-label">🔍 Filtrar por:</span>
+    <span class="filter-label">Filtrar:</span>
     <button class="filter-btn active" data-filter="all">Tudo</button>
     <button class="filter-btn" data-filter="win">✅ Onde ganhamos</button>
     <button class="filter-btn kommo-filter" data-filter="lose">⚠️ Perigos Kommo</button>
@@ -733,12 +637,12 @@
     </div>
   </div>
 
-  <!-- SEÇÃO: ONDE GANHAMOS -->
+  <!-- ONDE GANHAMOS -->
   <div class="section" id="section-win" data-section="win">
     <div class="section-header">
       <span class="section-emoji">🚀</span>
       <span class="section-title">Onde a RD Station Massacra</span>
-      <span class="section-count" id="count-win">5 diferenciais</span>
+      <span class="section-count" id="count-win">7 diferenciais</span>
     </div>
     <div class="cards-grid" id="grid-win">
 
@@ -787,7 +691,7 @@
     </div>
   </div>
 
-  <!-- SEÇÃO: PERIGOS KOMMO -->
+  <!-- PERIGOS KOMMO -->
   <div class="section" id="section-lose" data-section="lose">
     <div class="section-header">
       <span class="section-emoji">⚠️</span>
@@ -796,7 +700,7 @@
     </div>
     <div class="cards-grid" id="grid-lose">
 
-      <div class="card lose animate-in" data-keywords="contrato mensal no-lock sem compromisso">
+      <div class="card lose animate-in" data-keywords="barreira entrada perfil microempresa custo whatsapp imediatismo">
         <div class="card-tag lose">⚠️ Perigo</div>
         <div class="card-title">Agilidade e Baixa Barreira de Entrada</div>
         <div class="card-body">A Kommo atrai principalmente microempresas e perfis de baixa complexidade (Perfil D) que buscam uma solução de entrada focada em imediatismo. Seus diferenciais competitivos residem no <strong>custo-benefício agressivo de curto prazo</strong>, com pacotes que integram CRM, Marketing e Chat por valores entre R$ 500,00 e R$ 1.000,00, além de uma interface otimizada para quem prioriza WhatsApp e redes sociais como únicos canais de venda.</div>
@@ -817,16 +721,16 @@
     </div>
   </div>
 
-  <!-- SEÇÃO: OBJEÇÕES -->
+  <!-- OBJEÇÕES -->
   <div class="section" id="section-objection" data-section="objection">
     <div class="section-header">
       <span class="section-emoji">💬</span>
       <span class="section-title">Guia de Quebra de Objeções</span>
-      <span class="section-count" id="count-objection">3 objeções</span>
+      <span class="section-count" id="count-objection">4 objeções</span>
     </div>
     <div id="list-objection">
 
-      <div class="objection-card animate-in" data-keywords="barato tudo em um custo preço">
+      <div class="objection-card animate-in" data-keywords="tudo em um relatórios visibilidade roi gestão">
         <div class="objection-header" onclick="toggleObj(this)">
           <span class="objection-icon">➰</span>
           <span class="objection-question">"A Kommo é tudo em um."</span>
@@ -835,44 +739,40 @@
         <div class="objection-answer">
           <div class="objection-answer-inner">
             <div class="answer-label">✅ Argumento RD</div>
-            <div class="answer-text">As soluções "tudo em um" entregam tudo de forma <strong>mais genérica</strong> e isso tem impacto direto no seu negócio. <br><br> A Kommo apresenta<strong> relatórios básicos e limitados</strong> isso se torna um problema porque você não consegue ter visibilidade se esta perdendo ou ganhando dinheiro, se esta com ROI. <br><br> Em termos de gestão, a falta de visibilidade dos dados impacta diretamente a satisfação e o crescimento do seu time. Sem essas informações, você não consegue identificar quem está performando bem ou mal, quantas horas por dia cada pessoa da equipe dedica ao atendimento, onde estão os gargalos da operação, entre outros pontos essenciais para a evolução do negócio.<br><br></div>
+            <div class="answer-text">As soluções "tudo em um" entregam tudo de forma <strong>mais genérica</strong> — e isso tem impacto direto no seu negócio.<br><br>A Kommo apresenta <strong>relatórios básicos e limitados</strong>: isso se torna um problema porque você não consegue ter visibilidade se está perdendo ou ganhando dinheiro, se está com ROI positivo.<br><br>Em termos de gestão, a falta de visibilidade dos dados impacta diretamente a satisfação e o crescimento do seu time. Sem essas informações, você não consegue identificar quem está performando bem ou mal, quantas horas por dia cada pessoa dedica ao atendimento, onde estão os gargalos da operação, entre outros pontos essenciais para a evolução do negócio.</div>
           </div>
         </div>
       </div>
-      
-      
-      
-           <div class="objection-card animate-in" data-keywords="barato tudo em um custo preço">
+
+      <div class="objection-card animate-in" data-keywords="barato preço custo api whatsapp ban bloqueio meta">
         <div class="objection-header" onclick="toggleObj(this)">
           <span class="objection-icon">💸</span>
-          <span class="objection-question">"A Kommo é mais barata do que a RD"</span>
+          <span class="objection-question">"A Kommo é mais barata do que a RD."</span>
           <span class="objection-toggle">▾</span>
         </div>
         <div class="objection-answer">
           <div class="objection-answer-inner">
             <div class="answer-label">✅ Argumento RD</div>
-            <div class="answer-text">A Kommo tem um preço abaixo porque uma forma de contratação é através da contratação sem a API oficial, caso seja esta forma contratada, sua empresa assume um risco operacional crítico. <br> O uso de APIs não oficiais pela Kommo permite envios em massa que a Meta detecta facilmente, e isso pode resultar em suspensões de 1 a 30 dias ou até no banimento permanente do número, fazendo com que a empresa perca todo o seu histórico de conversas.<br> Na RD Station, somos parceiros da meta e todos nossos planos do RD Station Conversas tem a API oficial, isso garante que sua operação não pare porque reduzimos riscos de bloqueios e quedas de produtividade. <strong>Quanto custaria para sua operação ficar 72 horas — ou para sempre — sem o número que seus clientes já conhecem?</strong>.<br><br>Além disso, a Kommo <strong>não oferece pagamento mensal</strong> — o plano mínimo exige compromisso de 6 meses. A RD Station tem planos diferentes de acordo com sua necessidade e formas de pagamento adaptadas ao cenário brasileiro.
-            </div>
+            <div class="answer-text">A Kommo tem um preço abaixo porque uma forma de contratação é através da API não oficial. Se for essa a forma contratada, sua empresa assume um <strong>risco operacional crítico</strong>.<br><br>O uso de APIs não oficiais permite envios em massa que a Meta detecta facilmente, podendo resultar em suspensões de 1 a 30 dias ou até no <strong>banimento permanente do número</strong> — fazendo com que a empresa perca todo o seu histórico de conversas.<br><br>Na RD Station, somos parceiros da Meta e todos os planos do RD Conversas utilizam a API oficial. Isso garante que sua operação não pare. <strong>Quanto custaria para sua operação ficar 72 horas — ou para sempre — sem o número que seus clientes já conhecem?</strong><br><br>Além disso, a Kommo não oferece pagamento mensal — o plano mínimo exige compromisso de 6 meses. A RD tem planos adaptados ao cenário brasileiro.</div>
           </div>
         </div>
       </div>
 
-
-      <div class="objection-card animate-in" data-keywords="whatsapp só vendo marketing não preciso">
+      <div class="objection-card animate-in" data-keywords="whatsapp só vendo marketing não preciso ecossistema">
         <div class="objection-header" onclick="toggleObj(this)">
           <span class="objection-icon">📱</span>
-          <span class="objection-question">"Eu só quero usar a Kommo pelo WhatsApp"</span>
+          <span class="objection-question">"Eu só quero usar a Kommo pelo WhatsApp."</span>
           <span class="objection-toggle">▾</span>
         </div>
         <div class="objection-answer">
           <div class="objection-answer-inner">
             <div class="answer-label">✅ Argumento RD</div>
-            <div class="answer-text">"Vender pelo WhatsApp é o <strong>fim do processo de vendas.</strong>nA RD oferece um ecossistema completo que apoia sua empresa de ponta a ponta, impulsionando um fluxo de crescimento contínuo. Quando você analisa apenas uma parte do processo, limita sua capacidade de expandir. Além disso, você conta com um time de especialistas que não só ajuda na configuração das ferramentas, mas também atua de forma estratégica para evoluir seus resultados.<br> A RD te dá a máquina completa: <strong>atração, nutrição e venda</strong>."</div>
+            <div class="answer-text">"Vender pelo WhatsApp é o <strong>fim do processo de vendas</strong>. A RD oferece um ecossistema completo que apoia sua empresa de ponta a ponta, impulsionando um fluxo de crescimento contínuo.<br><br>Quando você analisa apenas uma parte do processo, limita sua capacidade de expandir. Além disso, você conta com um time de especialistas que não só ajuda na configuração das ferramentas, mas também atua de forma estratégica para evoluir seus resultados.<br><br>A RD te dá a máquina completa: <strong>atração, nutrição e venda</strong>."</div>
           </div>
         </div>
       </div>
 
-      <div class="objection-card animate-in" data-keywords="técnico integração complexo configurar">
+      <div class="objection-card animate-in" data-keywords="técnico integração complexo configurar suporte ti">
         <div class="objection-header" onclick="toggleObj(this)">
           <span class="objection-icon">🛠️</span>
           <span class="objection-question">"A Kommo parece mais fácil de configurar."</span>
@@ -881,7 +781,7 @@
         <div class="objection-answer">
           <div class="objection-answer-inner">
             <div class="answer-label">✅ Argumento RD</div>
-            <div class="answer-text">As configurações iniciais da Kommo podem ser <strong>complexas e exigem alto nível técnico</strong> para as integrações funcionarem corretamente<br> Isso por si só, já pode gerar um custo não previsto no seu orçamento.<br><br>A RD tem um Layout intuitivo de mexer, e foi pensada e desenhada para que o próprio time que usará a ferramenta consiga configurar as automações sem precisar de suporte de TI ou contratação de equipes externas técnicas. Além disso, se precisar de apoio você não ficará desemparado e dependente de um time que esta foram do Brasil — tal qual acontece na Kommo — aqui, nosso suporte e time de sucesso do cliente operam 100% em português e pronto para apoiar na resolução de problemas.</div>
+            <div class="answer-text">As configurações iniciais da Kommo podem ser <strong>complexas e exigem alto nível técnico</strong> para as integrações funcionarem corretamente. Isso por si só já pode gerar um custo não previsto no orçamento.<br><br>A RD tem um layout intuitivo, pensado para que o próprio time que usará a ferramenta consiga configurar as automações sem precisar de suporte de TI ou contratação de equipes técnicas externas.<br><br>E se precisar de apoio, você não ficará desamparado dependendo de um time fora do Brasil — como ocorre na Kommo. Nosso suporte e time de sucesso do cliente operam <strong>100% em português</strong>, prontos para apoiar na resolução de problemas.</div>
           </div>
         </div>
       </div>
@@ -889,7 +789,7 @@
     </div>
   </div>
 
-  <!-- SEÇÃO: KILLER QUESTIONS -->
+  <!-- KILLER QUESTIONS -->
   <div class="section" id="section-killer" data-section="killer">
     <div class="section-header">
       <span class="section-emoji">🎯</span>
@@ -938,7 +838,7 @@
         <div class="killer-num">05</div>
         <div class="killer-content">
           <div class="killer-q">🤔 "Como você automatiza a importação e o pré-registro de novos leads sem trabalho manual?"</div>
-          <div class="reality-block">Integração com Landing Pages é complexa e difícil segundo alguns usuários da Kommo. E isso obriga uso de ferramentas externas para capturar dados.</div>
+          <div class="reality-block">Integração com Landing Pages é complexa e difícil segundo alguns usuários da Kommo — obriga uso de ferramentas externas para capturar dados.</div>
           <div class="rd-block">Integração nativa e automática entre Marketing, CRM e Conversacional — o lead cai no funil com histórico completo.</div>
         </div>
       </div>
@@ -946,7 +846,7 @@
     </div>
   </div>
 
-  <!-- SEÇÃO: COMPARATIVO -->
+  <!-- COMPARATIVO -->
   <div class="section" id="section-compare" data-section="compare">
     <div class="section-header">
       <span class="section-emoji">📊</span>
@@ -997,10 +897,15 @@
             <td><span class="lose-dot"></span>Não integra Marketing</td>
             <td><span class="win-dot"></span>Integração nativa MKT + CRM + Conversas</td>
           </tr>
+          <tr data-keywords="api whatsapp meta oficial segurança ban">
+            <td>API WhatsApp</td>
+            <td><span class="lose-dot"></span>Planos com API não oficial (risco de ban)</td>
+            <td><span class="win-dot"></span>API oficial Meta em todos os planos</td>
+          </tr>
           <tr data-keywords="contrato pagamento mensal preço custo">
             <td>Pagamento</td>
             <td><span class="lose-dot"></span>Mínimo 6 meses de compromisso</td>
-            <td><span class="win-dot"></span>Flexibilidade de planos</td>
+            <td><span class="win-dot"></span>Planos flexíveis adaptados ao Brasil</td>
           </tr>
           <tr data-keywords="escalabilidade crescimento">
             <td>Escalabilidade</td>
@@ -1014,21 +919,20 @@
 
   <!-- FOOTER -->
   <footer>
-    <p>Battle Card <strong>RD Station vs Kommo</strong> · Versão 2026 · Uso interno da equipe de vendas</p>
+    <p>Battle Card <strong>RD Station vs Kommo</strong> · Uso interno da equipe de vendas</p>
     <p style="margin-top:6px; font-size:11px;">Documento atualizado conforme mudanças de mercado.</p>
   </footer>
 
 </div>
 
 <script>
-  // FILTER LOGIC
   const filterBtns = document.querySelectorAll('.filter-btn');
   const sections = {
-    win: document.getElementById('section-win'),
-    lose: document.getElementById('section-lose'),
+    win:       document.getElementById('section-win'),
+    lose:      document.getElementById('section-lose'),
     objection: document.getElementById('section-objection'),
-    killer: document.getElementById('section-killer'),
-    compare: document.getElementById('section-compare'),
+    killer:    document.getElementById('section-killer'),
+    compare:   document.getElementById('section-compare'),
   };
 
   filterBtns.forEach(btn => {
@@ -1040,24 +944,18 @@
         Object.values(sections).forEach(s => s.classList.remove('hidden'));
       } else {
         Object.entries(sections).forEach(([key, el]) => {
-          if (key === filter) {
-            el.classList.remove('hidden');
-          } else {
-            el.classList.add('hidden');
-          }
+          el.classList.toggle('hidden', key !== filter);
         });
       }
       updateSearch();
     });
   });
 
-  // SEARCH LOGIC
   const searchInput = document.getElementById('search');
 
   function updateSearch() {
     const query = searchInput.value.toLowerCase().trim();
 
-    // Cards in grid-win, grid-lose
     ['win', 'lose'].forEach(type => {
       const grid = document.getElementById(`grid-${type}`);
       if (!grid) return;
@@ -1073,7 +971,6 @@
       if (count) count.textContent = `${visible} ${type === 'win' ? 'diferenciais' : 'pontos de atenção'}`;
     });
 
-    // Objections
     const objCards = document.querySelectorAll('#list-objection .objection-card');
     let objVisible = 0;
     objCards.forEach(card => {
@@ -1085,7 +982,6 @@
     const countObj = document.getElementById('count-objection');
     if (countObj) countObj.textContent = `${objVisible} objeções`;
 
-    // Killers
     const killerCards = document.querySelectorAll('#list-killer .killer-card');
     let killerVisible = 0;
     killerCards.forEach(card => {
@@ -1097,18 +993,14 @@
     const countKiller = document.getElementById('count-killer');
     if (countKiller) countKiller.textContent = `${killerVisible} perguntas`;
 
-    // Compare table rows
-    const tableRows = document.querySelectorAll('#compare-table tbody tr');
-    tableRows.forEach(row => {
+    document.querySelectorAll('#compare-table tbody tr').forEach(row => {
       const text = (row.textContent + ' ' + (row.dataset.keywords || '')).toLowerCase();
-      const show = !query || text.includes(query);
-      row.classList.toggle('hidden', !show);
+      row.classList.toggle('hidden', !(!query || text.includes(query)));
     });
   }
 
   searchInput.addEventListener('input', updateSearch);
 
-  // ACCORDION
   function toggleObj(header) {
     const card = header.closest('.objection-card');
     const isOpen = card.classList.contains('open');
