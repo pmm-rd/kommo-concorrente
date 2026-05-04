@@ -30,7 +30,6 @@
     overflow-x: hidden;
   }
 
-  /* subtle dot pattern */
   body::before {
     content: '';
     position: fixed;
@@ -41,6 +40,257 @@
     z-index: 0;
   }
 
+  /* ── MODAL OVERLAY ── */
+  .modal-overlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 34, 51, 0.72);
+    backdrop-filter: blur(6px);
+    z-index: 1000;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 24px;
+    animation: fadeIn 0.3s ease;
+  }
+
+  .modal-overlay.hidden {
+    display: none;
+  }
+
+  @keyframes fadeIn {
+    from { opacity: 0; }
+    to   { opacity: 1; }
+  }
+
+  .modal {
+    background: #ffffff;
+    border-radius: 24px;
+    padding: 40px;
+    max-width: 460px;
+    width: 100%;
+    box-shadow: 0 24px 80px rgba(0, 34, 51, 0.3);
+    position: relative;
+    animation: slideUp 0.35s cubic-bezier(0.34, 1.56, 0.64, 1);
+    border-top: 5px solid var(--rd-cyan);
+  }
+
+  @keyframes slideUp {
+    from { opacity: 0; transform: translateY(30px) scale(0.97); }
+    to   { opacity: 1; transform: translateY(0) scale(1); }
+  }
+
+  .modal-logo {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 24px;
+  }
+
+  .modal-logo-dot {
+    width: 36px;
+    height: 36px;
+    background: linear-gradient(135deg, var(--rd-cyan), var(--rd-purple));
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 18px;
+  }
+
+  .modal-logo-text {
+    font-family: 'Syne', sans-serif;
+    font-size: 15px;
+    font-weight: 700;
+    color: var(--rd-dark);
+  }
+
+  .modal-logo-text span {
+    color: var(--text-muted);
+    font-weight: 400;
+    font-size: 13px;
+    display: block;
+    margin-top: 1px;
+  }
+
+  .modal-title {
+    font-family: 'DM Sans', sans-serif;
+    font-size: 20px;
+    font-weight: 700;
+    color: var(--rd-dark);
+    margin-bottom: 6px;
+    line-height: 1.3;
+  }
+
+  .modal-subtitle {
+    font-size: 14px;
+    color: var(--text-muted);
+    margin-bottom: 28px;
+    line-height: 1.6;
+  }
+
+  .form-group {
+    margin-bottom: 18px;
+  }
+
+  .form-label {
+    display: block;
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--rd-dark);
+    margin-bottom: 7px;
+    letter-spacing: 0.01em;
+  }
+
+  .form-label .required {
+    color: var(--rd-pink);
+    margin-left: 2px;
+  }
+
+  .form-select,
+  .form-input {
+    width: 100%;
+    padding: 11px 14px;
+    border: 1.5px solid var(--border);
+    border-radius: 10px;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 14px;
+    color: var(--rd-dark);
+    background: #f8fcfd;
+    outline: none;
+    transition: border-color 0.18s, box-shadow 0.18s, background 0.18s;
+    appearance: none;
+    -webkit-appearance: none;
+  }
+
+  .select-wrap {
+    position: relative;
+  }
+
+  .select-wrap::after {
+    content: '▾';
+    position: absolute;
+    right: 14px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: var(--text-muted);
+    font-size: 16px;
+    pointer-events: none;
+  }
+
+  .form-select:focus,
+  .form-input:focus {
+    border-color: var(--rd-cyan);
+    background: #fff;
+    box-shadow: 0 0 0 3px rgba(0, 201, 235, 0.15);
+  }
+
+  .form-select option[value=""] {
+    color: #9bbfcc;
+  }
+
+  .form-input::placeholder {
+    color: #9bbfcc;
+  }
+
+  .modal-btn {
+    width: 100%;
+    padding: 13px;
+    background: var(--rd-dark);
+    color: var(--rd-cyan);
+    border: none;
+    border-radius: 12px;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 15px;
+    font-weight: 700;
+    cursor: pointer;
+    transition: all 0.18s;
+    margin-top: 8px;
+    letter-spacing: 0.01em;
+  }
+
+  .modal-btn:hover {
+    background: #003a55;
+    transform: translateY(-1px);
+    box-shadow: 0 6px 20px rgba(0, 34, 51, 0.2);
+  }
+
+  .modal-btn:active {
+    transform: translateY(0);
+  }
+
+  .modal-error {
+    font-size: 12px;
+    color: var(--rd-pink);
+    margin-top: 6px;
+    display: none;
+  }
+
+  /* success state */
+  .modal-success {
+    text-align: center;
+    padding: 10px 0 4px;
+    display: none;
+  }
+
+  .modal-success-icon {
+    font-size: 48px;
+    margin-bottom: 14px;
+    display: block;
+  }
+
+  .modal-success-title {
+    font-family: 'DM Sans', sans-serif;
+    font-size: 18px;
+    font-weight: 700;
+    color: var(--rd-dark);
+    margin-bottom: 6px;
+  }
+
+  .modal-success-sub {
+    font-size: 14px;
+    color: var(--text-muted);
+    margin-bottom: 24px;
+  }
+
+  /* ── REGISTRO BADGE (top bar) ── */
+  .registro-bar {
+    display: none;
+    background: linear-gradient(90deg, #e6fafd, #f3eeff);
+    border-bottom: 1.5px solid var(--border);
+    padding: 10px 24px;
+    font-size: 13px;
+    color: var(--text-muted);
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    align-items: center;
+    gap: 10px;
+    flex-wrap: wrap;
+  }
+
+  .registro-bar.visible {
+    display: flex;
+  }
+
+  .registro-bar strong {
+    color: #007a92;
+  }
+
+  .registro-bar .reg-tag {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    background: #fff;
+    border: 1px solid var(--border);
+    border-radius: 20px;
+    padding: 3px 12px;
+    font-size: 12px;
+    font-weight: 600;
+    color: var(--rd-dark);
+  }
+
+  /* ── MAIN CONTENT ── */
   .container {
     max-width: 1100px;
     margin: 0 auto;
@@ -49,7 +299,6 @@
     z-index: 1;
   }
 
-  /* ── HEADER ── */
   header {
     padding: 40px 0 32px;
     border-bottom: 2px solid var(--border);
@@ -93,7 +342,6 @@
     line-height: 1.65;
   }
 
-  /* ── CENTRAL MESSAGE ── */
   .central-message {
     background: linear-gradient(135deg, #e6fafd, #f3eeff);
     border: 1.5px solid #90dff0;
@@ -115,7 +363,6 @@
   }
   .central-message strong { color: #007a92; }
 
-  /* ── SCORE BOARD ── */
   .score-board {
     display: grid;
     grid-template-columns: 1fr auto 1fr;
@@ -167,7 +414,6 @@
     justify-content: center;
   }
 
-  /* ── FILTER BAR ── */
   .filter-bar {
     display: flex;
     gap: 8px;
@@ -219,7 +465,6 @@
     color: #fff;
   }
 
-  /* ── SEARCH ── */
   .search-wrap {
     position: relative;
     flex: 1;
@@ -249,7 +494,6 @@
   #search:focus { border-color: var(--rd-cyan); }
   #search::placeholder { color: #9bbfcc; }
 
-  /* ── SECTIONS ── */
   .section { margin-bottom: 52px; }
 
   .section-header {
@@ -278,7 +522,6 @@
     margin-left: auto;
   }
 
-  /* ── CARDS ── */
   .cards-grid {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
@@ -341,7 +584,6 @@
   }
   .card-body strong { color: var(--rd-dark); font-weight: 700; }
 
-  /* ── OBJECTION CARDS ── */
   .objection-card {
     background: #fff;
     border: 1.5px solid var(--border);
@@ -418,7 +660,6 @@
   }
   .answer-text strong { color: var(--rd-dark); font-weight: 700; }
 
-  /* ── COMPARE TABLE ── */
   .compare-table {
     width: 100%;
     border-collapse: separate;
@@ -471,7 +712,6 @@
   .compare-table td .win-dot::before  { content: '✅ '; }
   .compare-table td .lose-dot::before { content: '❌ '; }
 
-  /* ── KILLER CARDS ── */
   .killer-card {
     background: #fff;
     border: 1.5px solid var(--border);
@@ -550,7 +790,6 @@
     color: #007a92;
   }
 
-  /* ── FOOTER ── */
   footer {
     border-top: 2px solid var(--border);
     padding: 28px 0;
@@ -561,10 +800,8 @@
   }
   footer strong { color: #007a92; }
 
-  /* ── UTILITIES ── */
   .hidden { display: none !important; }
 
-  /* ── RESPONSIVE ── */
   @media (max-width: 640px) {
     .cards-grid { grid-template-columns: 1fr; }
     .score-board { grid-template-columns: 1fr; }
@@ -572,9 +809,9 @@
     .compare-table { font-size: 12px; }
     .compare-table th, .compare-table td { padding: 10px 12px; }
     .objection-answer-inner { padding-left: 20px; }
+    .modal { padding: 28px 20px; }
   }
 
-  /* ── ANIMATIONS ── */
   @keyframes fadeInUp {
     from { opacity: 0; transform: translateY(14px); }
     to   { opacity: 1; transform: translateY(0); }
@@ -591,9 +828,77 @@
 </head>
 <body>
 
+<!-- ── MODAL ── -->
+<div class="modal-overlay" id="modal-overlay">
+  <div class="modal">
+
+    <div class="modal-logo">
+      <div class="modal-logo-dot">⚔️</div>
+      <div class="modal-logo-text">
+        Battle Card
+        <span>RD Station vs Kommo</span>
+      </div>
+    </div>
+
+    <!-- Form state -->
+    <div id="modal-form-state">
+      <div class="modal-title">Registre sua negociação</div>
+      <div class="modal-subtitle">Informe para qual negociação você utilizará este battle card antes de continuar.</div>
+
+      <div class="form-group">
+        <label class="form-label" for="modal-nome">Seu nome <span class="required">*</span></label>
+        <div class="select-wrap">
+          <select class="form-select" id="modal-nome">
+            <option value="">Selecione seu nome...</option>
+            <option value="Mayara Alves">Mayara Alves</option>
+            <option value="Gabriela Sousa">Gabriela Sousa</option>
+            <option value="Mellory Oliveira">Mellory Oliveira</option>
+          </select>
+        </div>
+        <div class="modal-error" id="error-nome">Por favor, selecione seu nome.</div>
+      </div>
+
+      <div class="form-group">
+        <label class="form-label" for="modal-opp">Número da oportunidade (Salesforce) <span class="required">*</span></label>
+        <input
+          class="form-input"
+          type="text"
+          id="modal-opp"
+          placeholder="Ex: 0064500001Xv3ZAAZ"
+        />
+        <div class="modal-error" id="error-opp">Por favor, informe o número da oportunidade.</div>
+      </div>
+
+      <button class="modal-btn" onclick="submitModal()">Acessar Battle Card →</button>
+
+<button 
+  style="background: transparent; color: var(--text-muted); border: none; margin-top: 15px; font-size: 13px; text-decoration: underline; cursor: pointer; width: 100%;" 
+  onclick="closeModal()">
+  Não tenho negociação agora
+</button>
+    </div>
+
+    <!-- Success state -->
+    <div class="modal-success" id="modal-success">
+      <span class="modal-success-icon">✅</span>
+      <div class="modal-success-title">Registro salvo!</div>
+      <div class="modal-success-sub">Tudo certo, <strong id="success-nome"></strong>. Boa negociação! 🚀</div>
+      <button class="modal-btn" onclick="closeModal()">Abrir Battle Card</button>
+    </div>
+
+  </div>
+</div>
+
+<!-- ── REGISTRO BAR ── -->
+<div class="registro-bar" id="registro-bar">
+  🗂️ Negociação registrada:
+  <span class="reg-tag">👤 <span id="bar-nome"></span></span>
+  <span class="reg-tag">🔖 <span id="bar-opp"></span></span>
+</div>
+
+<!-- ── PAGE ── -->
 <div class="container">
 
-  <!-- HEADER -->
   <header>
     <div>
       <div class="badge">⚔️ Battle Card</div>
@@ -602,12 +907,10 @@
     </div>
   </header>
 
-  <!-- MENSAGEM CENTRAL -->
   <div class="central-message">
     <strong>Mensagem Central:</strong> A RD Station é a escolha de quem busca a potência de duas plataformas especialistas que trabalham juntas — uma para CRM e outra para Conversacional. Ao contrário de modelos genéricos, entregamos profundidade nativa em cada frente, garantindo robustez e estabilidade para profissionalizar sua escala com <strong>suporte local</strong> de quem entende o mercado brasileiro.
   </div>
 
-  <!-- SCORE -->
   <div class="score-board">
     <div>
       <div class="score-name rd">🚀 RD Station</div>
@@ -622,7 +925,6 @@
     </div>
   </div>
 
-  <!-- FILTROS -->
   <div class="filter-bar">
     <span class="filter-label">Filtrar:</span>
     <button class="filter-btn active" data-filter="all">Tudo</button>
@@ -917,7 +1219,6 @@
     </div>
   </div>
 
-  <!-- FOOTER -->
   <footer>
     <p>Battle Card <strong>RD Station vs Kommo</strong> · Uso interno da equipe de vendas</p>
     <p style="margin-top:6px; font-size:11px;">Documento atualizado conforme mudanças de mercado.</p>
@@ -926,6 +1227,89 @@
 </div>
 
 <script>
+  // ── MODAL LOGIC ──
+// --- SUBSTITUA DAQUI ---
+async function submitModal() {
+  const nome = document.getElementById('modal-nome').value.trim();
+  const opp  = document.getElementById('modal-opp').value.trim();
+  const errNome = document.getElementById('error-nome');
+  const errOpp  = document.getElementById('error-opp');
+  const btn = document.querySelector('.modal-btn');
+
+  let valid = true;
+
+  if (!nome) {
+    errNome.style.display = 'block';
+    document.getElementById('modal-nome').style.borderColor = '#ff009e';
+    valid = false;
+  } else {
+    errNome.style.display = 'none';
+    document.getElementById('modal-nome').style.borderColor = '';
+  }
+
+  if (!opp) {
+    errOpp.style.display = 'block';
+    document.getElementById('modal-opp').style.borderColor = '#ff009e';
+    valid = false;
+  } else {
+    errOpp.style.display = 'none';
+    document.getElementById('modal-opp').style.borderColor = '';
+  }
+
+  if (!valid) return;
+
+  btn.textContent = "Enviando...Aguarde um momento ⏳";
+  btn.disabled = true;
+
+  // --- CAPTURA DATA E HORA ATUAL ---
+  const agora = new Date().toLocaleString('pt-BR');
+
+  const urlPlanilha = "https://script.google.com/macros/s/AKfycbxtSJ0UoSrYAar7qvfRUDEk8bdX2WRXaJbLtg0Z1TxLmeJrAjZDiA64M5g5bRbkR3nu/exec"; 
+
+  try {
+    await fetch(urlPlanilha, {
+      method: 'POST',
+      mode: 'no-cors', 
+      headers: { 'Content-Type': 'application/json' },
+      // ENVIANDO O CAMPO dataHora PARA A PLANILHA
+      body: JSON.stringify({ 
+        nome: nome, 
+        oportunidade: opp, 
+        dataHora: agora 
+      })
+    });
+
+    document.getElementById('modal-form-state').style.display = 'none';
+    document.getElementById('success-nome').textContent = nome.split(' ')[0];
+    document.getElementById('modal-success').style.display = 'block';
+
+    document.getElementById('bar-nome').textContent = nome;
+    document.getElementById('bar-opp').textContent  = opp;
+
+  } catch (error) {
+    console.error("Erro:", error);
+    alert("Erro ao salvar na planilha.");
+    btn.textContent = "Acessar Battle Card →";
+    btn.disabled = false;
+  }
+}
+// --- ATÉ AQUI (não apague o que vem abaixo) ---
+
+function closeModal() {
+  document.getElementById('modal-overlay').classList.add('hidden');
+  document.getElementById('registro-bar').classList.add('visible');
+}
+  // Clear error on input
+  document.getElementById('modal-nome').addEventListener('change', function() {
+    document.getElementById('error-nome').style.display = 'none';
+    this.style.borderColor = '';
+  });
+  document.getElementById('modal-opp').addEventListener('input', function() {
+    document.getElementById('error-opp').style.display = 'none';
+    this.style.borderColor = '';
+  });
+
+  // ── FILTER LOGIC ──
   const filterBtns = document.querySelectorAll('.filter-btn');
   const sections = {
     win:       document.getElementById('section-win'),
@@ -951,6 +1335,7 @@
     });
   });
 
+  // ── SEARCH LOGIC ──
   const searchInput = document.getElementById('search');
 
   function updateSearch() {
@@ -1001,6 +1386,7 @@
 
   searchInput.addEventListener('input', updateSearch);
 
+  // ── ACCORDION ──
   function toggleObj(header) {
     const card = header.closest('.objection-card');
     const isOpen = card.classList.contains('open');
