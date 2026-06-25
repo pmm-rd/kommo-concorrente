@@ -40,7 +40,6 @@ c<!DOCTYPE html>
     z-index: 0;
   }
 
-  /* ── MODAL OVERLAY ── */
   .modal-overlay {
     position: fixed;
     inset: 0;
@@ -185,10 +184,6 @@ c<!DOCTYPE html>
     box-shadow: 0 0 0 3px rgba(0, 201, 235, 0.15);
   }
 
-  .form-select option[value=""] {
-    color: #9bbfcc;
-  }
-
   .form-input::placeholder {
     color: #9bbfcc;
   }
@@ -226,7 +221,6 @@ c<!DOCTYPE html>
     display: none;
   }
 
-  /* success state */
   .modal-success {
     text-align: center;
     padding: 10px 0 4px;
@@ -253,7 +247,6 @@ c<!DOCTYPE html>
     margin-bottom: 24px;
   }
 
-  /* ── REGISTRO BADGE (top bar) ── */
   .registro-bar {
     display: none;
     background: linear-gradient(90deg, #e6fafd, #f3eeff);
@@ -290,7 +283,6 @@ c<!DOCTYPE html>
     color: var(--rd-dark);
   }
 
-  /* ── MAIN CONTENT ── */
   .container {
     max-width: 1100px;
     margin: 0 auto;
@@ -847,42 +839,33 @@ c<!DOCTYPE html>
 
       <div class="form-group">
         <label class="form-label" for="modal-nome">Seu nome <span class="required">*</span></label>
-        <div class="select-wrap">
-          <select class="form-select" id="modal-nome">
-            <option value="">Selecione seu nome...</option>
-            <option value="Diana Brito">Diana Brito</option>
-            <option value="Mayara Maia">Mayara Maia</option>
-            <option value="João Vítor Reis">João Vítor Reis</option>
-            <option value="Yasmin Protas">Yasmin Protas</option>
-            <option value="Gabriela Cidade">Gabriela Cidade</option>
-            <option value="Isa Lauren Ximenes de Sousa">Isa Lauren Ximenes de Sousa</option>
-            <option value="Beatriz Grandi">Beatriz Grandi</option>
-            <option value="Christian Saidok">Christian Saidok</option>
-            <option value="Mellory Oliveira">Mellory Oliveira</option>
-            <option value="Daniel Machado">Daniel Machado</option>
-          </select>
-        </div>
-        <div class="modal-error" id="error-nome">Por favor, selecione seu nome.</div>
+        <input
+          class="form-input"
+          type="text"
+          id="modal-nome"
+          placeholder="Digite seu nome completo..."
+        />
+        <div class="modal-error" id="error-nome">Por favor, informe seu nome.</div>
       </div>
 
       <div class="form-group">
-        <label class="form-label" for="modal-opp">Número da oportunidade (Salesforce) <span class="required">*</span></label>
+        <label class="form-label" for="modal-opp">Link da oportunidade (Salesforce) <span class="required">*</span></label>
         <input
           class="form-input"
           type="text"
           id="modal-opp"
-          placeholder="Ex: 0064500001Xv3ZAAZ"
+          placeholder="Ex: https://rdstation.lightning.force.com/lightning/r/Opportunity/..."
         />
         <div class="modal-error" id="error-opp">Por favor, informe o número da oportunidade.</div>
       </div>
 
       <button class="modal-btn" onclick="submitModal()">Acessar Battle Card →</button>
 
-<button 
-  style="background: transparent; color: var(--text-muted); border: none; margin-top: 15px; font-size: 13px; text-decoration: underline; cursor: pointer; width: 100%;" 
-  onclick="closeModal()">
-  Não tenho negociação agora
-</button>
+      <button
+        style="background: transparent; color: var(--text-muted); border: none; margin-top: 15px; font-size: 13px; text-decoration: underline; cursor: pointer; width: 100%;"
+        onclick="closeModal()">
+        Não tenho negociação agora
+      </button>
     </div>
 
     <!-- Success state -->
@@ -1234,80 +1217,75 @@ c<!DOCTYPE html>
 </div>
 
 <script>
-  // ── MODAL LOGIC ──
-// --- SUBSTITUA DAQUI ---
-async function submitModal() {
-  const nome = document.getElementById('modal-nome').value.trim();
-  const opp  = document.getElementById('modal-opp').value.trim();
-  const errNome = document.getElementById('error-nome');
-  const errOpp  = document.getElementById('error-opp');
-  const btn = document.querySelector('.modal-btn');
+  async function submitModal() {
+    const nome = document.getElementById('modal-nome').value.trim();
+    const opp  = document.getElementById('modal-opp').value.trim();
+    const errNome = document.getElementById('error-nome');
+    const errOpp  = document.getElementById('error-opp');
+    const btn = document.querySelector('.modal-btn');
 
-  let valid = true;
+    let valid = true;
 
-  if (!nome) {
-    errNome.style.display = 'block';
-    document.getElementById('modal-nome').style.borderColor = '#ff009e';
-    valid = false;
-  } else {
-    errNome.style.display = 'none';
-    document.getElementById('modal-nome').style.borderColor = '';
+    if (!nome) {
+      errNome.style.display = 'block';
+      document.getElementById('modal-nome').style.borderColor = '#ff009e';
+      valid = false;
+    } else {
+      errNome.style.display = 'none';
+      document.getElementById('modal-nome').style.borderColor = '';
+    }
+
+    if (!opp) {
+      errOpp.style.display = 'block';
+      document.getElementById('modal-opp').style.borderColor = '#ff009e';
+      valid = false;
+    } else {
+      errOpp.style.display = 'none';
+      document.getElementById('modal-opp').style.borderColor = '';
+    }
+
+    if (!valid) return;
+
+    btn.textContent = "Enviando...Aguarde um momento ⏳";
+    btn.disabled = true;
+
+    const agora = new Date().toLocaleString('pt-BR');
+
+    const urlPlanilha = "https://script.google.com/macros/s/AKfycbxtSJ0UoSrYAar7qvfRUDEk8bdX2WRXaJbLtg0Z1TxLmeJrAjZDiA64M5g5bRbkR3nu/exec";
+
+    try {
+      await fetch(urlPlanilha, {
+        method: 'POST',
+        mode: 'no-cors',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          nome: nome,
+          oportunidade: opp,
+          dataHora: agora
+        })
+      });
+
+      document.getElementById('modal-form-state').style.display = 'none';
+      document.getElementById('success-nome').textContent = nome.split(' ')[0];
+      document.getElementById('modal-success').style.display = 'block';
+
+      document.getElementById('bar-nome').textContent = nome;
+      document.getElementById('bar-opp').textContent  = opp;
+
+    } catch (error) {
+      console.error("Erro:", error);
+      alert("Erro ao salvar na planilha.");
+      btn.textContent = "Acessar Battle Card →";
+      btn.disabled = false;
+    }
   }
 
-  if (!opp) {
-    errOpp.style.display = 'block';
-    document.getElementById('modal-opp').style.borderColor = '#ff009e';
-    valid = false;
-  } else {
-    errOpp.style.display = 'none';
-    document.getElementById('modal-opp').style.borderColor = '';
+  function closeModal() {
+    document.getElementById('modal-overlay').classList.add('hidden');
+    document.getElementById('registro-bar').classList.add('visible');
   }
 
-  if (!valid) return;
-
-  btn.textContent = "Enviando...Aguarde um momento ⏳";
-  btn.disabled = true;
-
-  // --- CAPTURA DATA E HORA ATUAL ---
-  const agora = new Date().toLocaleString('pt-BR');
-
-  const urlPlanilha = "https://script.google.com/macros/s/AKfycbxtSJ0UoSrYAar7qvfRUDEk8bdX2WRXaJbLtg0Z1TxLmeJrAjZDiA64M5g5bRbkR3nu/exec"; 
-
-  try {
-    await fetch(urlPlanilha, {
-      method: 'POST',
-      mode: 'no-cors', 
-      headers: { 'Content-Type': 'application/json' },
-      // ENVIANDO O CAMPO dataHora PARA A PLANILHA
-      body: JSON.stringify({ 
-        nome: nome, 
-        oportunidade: opp, 
-        dataHora: agora 
-      })
-    });
-
-    document.getElementById('modal-form-state').style.display = 'none';
-    document.getElementById('success-nome').textContent = nome.split(' ')[0];
-    document.getElementById('modal-success').style.display = 'block';
-
-    document.getElementById('bar-nome').textContent = nome;
-    document.getElementById('bar-opp').textContent  = opp;
-
-  } catch (error) {
-    console.error("Erro:", error);
-    alert("Erro ao salvar na planilha.");
-    btn.textContent = "Acessar Battle Card →";
-    btn.disabled = false;
-  }
-}
-// --- ATÉ AQUI (não apague o que vem abaixo) ---
-
-function closeModal() {
-  document.getElementById('modal-overlay').classList.add('hidden');
-  document.getElementById('registro-bar').classList.add('visible');
-}
-  // Clear error on input
-  document.getElementById('modal-nome').addEventListener('change', function() {
+  document.getElementById('modal-nome').addEventListener('input', function() {
     document.getElementById('error-nome').style.display = 'none';
     this.style.borderColor = '';
   });
@@ -1316,7 +1294,6 @@ function closeModal() {
     this.style.borderColor = '';
   });
 
-  // ── FILTER LOGIC ──
   const filterBtns = document.querySelectorAll('.filter-btn');
   const sections = {
     win:       document.getElementById('section-win'),
@@ -1342,7 +1319,6 @@ function closeModal() {
     });
   });
 
-  // ── SEARCH LOGIC ──
   const searchInput = document.getElementById('search');
 
   function updateSearch() {
@@ -1393,7 +1369,6 @@ function closeModal() {
 
   searchInput.addEventListener('input', updateSearch);
 
-  // ── ACCORDION ──
   function toggleObj(header) {
     const card = header.closest('.objection-card');
     const isOpen = card.classList.contains('open');
